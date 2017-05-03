@@ -10,7 +10,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     String[] d ={"Mr.360","the palti hit","Mr.cricket","Captain Cool","The Wall","The Fighter"};
     Integer[] IMAGES = {R.drawable.abd,R.drawable.kp,R.drawable.hussey,R.drawable.dhoni,R.drawable.dravid,R.drawable.yuvi};
-   // String[] h = {"abd","kp","hussey"};
+
+   String[] h = {"abd","kp","hussey","dhoni","dravid","yuvi"};
     //first change
 
     @Override
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView myListView = (ListView) findViewById(R.id.myListView);
 
-        CustomList adapter = new CustomList(this, d,IMAGES);
+        CustomList adapter = new CustomList(this, d,IMAGES,h);
 
         myListView.setAdapter(adapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

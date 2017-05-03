@@ -16,12 +16,14 @@ class CustomList extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] web;
     private final Integer[] imageId;
+    private final String[] name;
     public CustomList(Activity context,
-                      String[] web, Integer[] imageId) {
+                      String[] web, Integer[] imageId,String[] name) {
         super(context, R.layout.customlayout, web);
         this.context = context;
         this.web = web;
         this.imageId = imageId;
+        this.name = name;
 
     }
     @Override
@@ -29,9 +31,12 @@ class CustomList extends ArrayAdapter<String> {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.customlayout, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
+        TextView txtTitle2 = (TextView) rowView.findViewById(R.id.txt2);
+
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
+        txtTitle2.setText(name[position]);
 
         imageView.setImageResource(imageId[position]);
         return rowView;
