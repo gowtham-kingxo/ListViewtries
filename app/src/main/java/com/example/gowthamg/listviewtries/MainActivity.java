@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     String[] d ={"Mr.360","the palti hit","Mr.cricket","Captain Cool","The Wall","The Fighter"};
     Integer[] IMAGES = {R.drawable.abd,R.drawable.kp,R.drawable.hussey,R.drawable.dhoni,R.drawable.dravid,R.drawable.yuvi};
    // String[] h = {"abd","kp","hussey"};
+    //first change
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
