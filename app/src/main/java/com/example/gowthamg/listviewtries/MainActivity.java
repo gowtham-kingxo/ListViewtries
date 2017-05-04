@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class MainActivity extends Activity {
       //  load.download();
         ImageDownload load = new ImageDownload();
         try {
-            b = load.execute("https://kart.la/wp-content/uploads/2016/07/wp-image-1062260533jpeg-150.jpeg").get();
+            b = load.execute("https://kart.la/wp-content/uploads/2016/07/wp-image-1062260533jpeg-150x150.jpeg").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -50,7 +51,8 @@ public class MainActivity extends Activity {
 
         bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);
 
-
+        ImageView ig = (ImageView) findViewById(R.id.img1);
+        ig.setImageResource(R.drawable.dhoni);
         customlist2 adapter = new customlist2(this, d, IMAGES, h,bitmapArray);
 
 

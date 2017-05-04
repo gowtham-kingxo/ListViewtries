@@ -5,12 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.gowthamg.listviewtries.MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/img1"/>
     <ListView
         android:layout_width="368dp"
         android:layout_height="495dp"
@@ -20,4 +28,5 @@
 
     </ListView>
     </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
