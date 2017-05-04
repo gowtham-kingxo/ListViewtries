@@ -2,17 +2,20 @@ package com.example.gowthamg.listviewtries;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity {
 
@@ -34,8 +37,16 @@ public class MainActivity extends Activity {
 
 
         // CustomList adapter = new CustomList(this, d,IMAGES,h);
+       // ImageDownload load = new ImageDownload();
+      //  load.download();
         ImageDownload load = new ImageDownload();
-        load.download();
+        try {
+            b = load.execute("https://kart.la/wp-content/uploads/2016/07/wp-image-1062260533jpeg-150.jpeg").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);bitmapArray.add(b);
 
@@ -76,8 +87,38 @@ public class MainActivity extends Activity {
 
 
     }
+    public static class ImageDownload extends AsyncTask<String, Void ,Bitmap>
+    {
 
-    public  class ImageDownload
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String result = "";
+            URL url;
+            HttpURLConnection connection = null;
+
+
+            try {
+                url = new URL(strings[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream is = connection.getInputStream();
+                Bitmap mybitmap = BitmapFactory.decodeStream(is);
+                return mybitmap;
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+            return null;
+
+
+        }
+    }
+
+   /* public  class ImageDownload
     {
         void download()
         {
@@ -88,12 +129,12 @@ public class MainActivity extends Activity {
                         @Override
                         public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
 
-                           /* bitmapArray.add(resource);
                             bitmapArray.add(resource);
                             bitmapArray.add(resource);
                             bitmapArray.add(resource);
                             bitmapArray.add(resource);
-                            bitmapArray.add(resource);*/
+                            bitmapArray.add(resource);
+                            bitmapArray.add(resource);
                             b = resource;
                             Toast.makeText(MainActivity.this, "Resource :"+resource, Toast.LENGTH_SHORT).show();
                             Toast.makeText(MainActivity.this, "b :"+b, Toast.LENGTH_SHORT).show();
@@ -113,5 +154,5 @@ public class MainActivity extends Activity {
 
         }
 
-    }
+    }*/
 }
